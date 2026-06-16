@@ -1,3 +1,3 @@
 export default {
-  base: "/fuguang-growth-log/",
+  base: "/personal-growth-journal/",
 };

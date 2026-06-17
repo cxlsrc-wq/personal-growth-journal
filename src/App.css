@@ -15600,3 +15600,432 @@ h1,
     min-height: auto;
   }
 }
+
+/* Mobile readability pass: prevent title/card overlap on GitHub Pages. */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+.landing-title,
+.page-header h1,
+.section-title,
+.module-title,
+.card-title,
+.feature-title,
+.book-film-summary-head h2,
+.direction-title,
+.selected-box-title,
+.shelf-title,
+.place-card-title {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.landing-subtitle,
+.landing-preview-card p,
+.card-desc,
+.feature-desc,
+.description,
+.record-text,
+.direction-desc,
+.book-film-summary-head p {
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.landing-kicker,
+.landing-actions,
+.landing-preview-card,
+.landing-preview-card *,
+.custom-select,
+.custom-select-trigger,
+.date-picker-popover,
+.profile-editor,
+.modal,
+.drawer,
+.card,
+.panel,
+.section-card,
+.glass-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    line-height: 1.65;
+  }
+
+  .landing-page {
+    position: relative;
+    min-height: 100svh;
+    height: auto;
+    padding: max(16px, env(safe-area-inset-top)) 16px 22px;
+    grid-template-rows: auto auto auto auto;
+    place-items: stretch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 216, 77, 0.2), transparent 30%),
+      radial-gradient(circle at 86% 12%, rgba(255, 95, 158, 0.14), transparent 32%),
+      linear-gradient(135deg, #fff7ec 0%, #fff1f8 52%, #eaf7ff 100%);
+  }
+
+  .landing-page::before,
+  .landing-page::after {
+    opacity: 0.28;
+  }
+
+  .landing-topbar {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 12px;
+    border-radius: 18px;
+  }
+
+  .landing-topbar strong {
+    font-size: 13px;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+  }
+
+  .landing-topbar span {
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.45;
+    letter-spacing: 0.1em;
+    white-space: normal;
+  }
+
+  .landing-dopamine-hero,
+  .home-hero,
+  .hero,
+  .hero-section {
+    width: 100%;
+    min-height: auto;
+    padding: 26px 20px;
+    display: block;
+    border-radius: 28px;
+  }
+
+  .landing-hero-copy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .landing-kicker,
+  .hero-badge,
+  .badge,
+  .label-pill {
+    position: static;
+    display: inline-flex;
+    max-width: 100%;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    white-space: normal;
+  }
+
+  .landing-title,
+  h1.hero-title,
+  .hero-title,
+  .main-title {
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(31px, 8.8vw, 44px);
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+    white-space: normal;
+  }
+
+  .landing-subtitle,
+  .hero-subtitle,
+  .subtitle,
+  .tagline {
+    max-width: 100%;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.65;
+    white-space: normal;
+  }
+
+  .landing-actions,
+  .hero-actions,
+  .button-group,
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .landing-actions button,
+  .landing-enter,
+  .landing-secondary,
+  .hero-actions button,
+  .button-group button,
+  .actions button,
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 15px;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .landing-preview-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .landing-preview-card,
+  .card,
+  .menu-card,
+  .feature-card {
+    width: 100%;
+    min-height: auto;
+    padding: 18px;
+    margin-bottom: 0;
+    border-radius: 22px;
+  }
+
+  .landing-preview-card span {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .landing-preview-card strong,
+  .card-title,
+  .feature-title {
+    font-size: 18px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .landing-preview-card p,
+  .card-desc,
+  .feature-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: normal;
+  }
+
+  .landing-ending {
+    width: 100%;
+    padding: 0 4px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .landing-video,
+  .landing-ship-route,
+  .landing-ship,
+  .landing-ship-light,
+  .landing-sky-glow,
+  .landing-moon,
+  .landing-stars,
+  .landing-sticker-field,
+  .landing-journal-visual,
+  .landing-orbit,
+  .landing-mini-card,
+  .landing-planet {
+    display: none !important;
+  }
+
+  .app-shell,
+  .main-content,
+  .page-content,
+  .content-area {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .main-content {
+    padding-inline: 16px;
+  }
+
+  .page-header,
+  .section-header,
+  .book-film-section-heading,
+  .daily-ritual-header,
+  .direction-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .page-header h1,
+  .page-title {
+    max-width: 100%;
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.22;
+    letter-spacing: 0.02em;
+  }
+
+  .page-header p,
+  .section-header p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .date-display-wrap,
+  .date-display-trigger,
+  .date-picker-popover {
+    width: min(100%, 360px);
+    max-width: calc(100vw - 32px);
+  }
+
+  .dashboard-bento,
+  .status-metrics,
+  .quick-entry-grid,
+  .mood-layout,
+  .emotion-layout,
+  .wish-map-workspace,
+  .wish-orbit-support-grid,
+  .atlas-map-layout,
+  .book-film-page,
+  .book-film-overview,
+  .book-film-category-grid,
+  .book-film-form-grid,
+  .profile-form-grid,
+  .form-grid,
+  .modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .book-film-summary-head h2 {
+    white-space: normal;
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .book-film-summary-head > small {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .book-film-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  input,
+  textarea,
+  select,
+  button,
+  .select-field,
+  .custom-select,
+  .custom-select-trigger,
+  .date-input-trigger {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .custom-select-menu {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: auto;
+  }
+
+  .modal,
+  .drawer,
+  .profile-editor,
+  .date-picker-popover,
+  .image-preview-modal {
+    max-width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 520px) {
+  .landing-page {
+    padding-inline: 14px;
+    gap: 14px;
+  }
+
+  .landing-dopamine-hero,
+  .home-hero,
+  .hero,
+  .hero-section {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+
+  .landing-title {
+    font-size: clamp(30px, 9.2vw, 38px);
+    line-height: 1.18;
+  }
+
+  .landing-preview-grid,
+  .book-film-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-preview-card {
+    padding: 17px 18px;
+  }
+
+  .page-header h1,
+  .page-title {
+    font-size: clamp(26px, 8.5vw, 32px);
+  }
+}
+
+@media (max-width: 430px) {
+  .landing-title {
+    font-size: clamp(29px, 9vw, 36px);
+    letter-spacing: -0.025em;
+  }
+
+  .landing-subtitle {
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .landing-topbar,
+  .landing-dopamine-hero,
+  .landing-preview-card {
+    box-shadow: 0 10px 24px rgba(124, 92, 255, 0.08);
+  }
+
+  .card,
+  .panel,
+  .section-card,
+  .glass-card {
+    padding: 18px;
+  }
+}

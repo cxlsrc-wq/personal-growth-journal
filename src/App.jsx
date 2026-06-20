@@ -3727,6 +3727,8 @@ function VoyagePage({ logs, onSave, selectedDateKey }) {
 
 function LandingPage({ onEnter }) {
   const [isLeaving, setIsLeaving] = useState(false);
+  const landingRef = useRef(null);
+  const pointerFrameRef = useRef(0);
 
   const enterSite = () => {
     setIsLeaving(true);
@@ -3734,22 +3736,32 @@ function LandingPage({ onEnter }) {
   };
 
   const moveLight = (event) => {
+    if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    event.currentTarget.style.setProperty("--water-x", `${x}%`);
-    event.currentTarget.style.setProperty("--water-y", `${y}%`);
-    event.currentTarget.style.setProperty("--drift-x", `${(x - 50) / 18}px`);
-    event.currentTarget.style.setProperty("--drift-y", `${(y - 50) / 22}px`);
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const xPercent = (x / rect.width) * 100;
+    const yPercent = (y / rect.height) * 100;
+
+    window.cancelAnimationFrame(pointerFrameRef.current);
+    pointerFrameRef.current = window.requestAnimationFrame(() => {
+      if (!landingRef.current) return;
+      landingRef.current.style.setProperty("--cursor-x", `${x}px`);
+      landingRef.current.style.setProperty("--cursor-y", `${y}px`);
+      landingRef.current.style.setProperty("--cursor-opacity", "1");
+      landingRef.current.style.setProperty("--drift-x", `${(xPercent - 50) / 32}px`);
+      landingRef.current.style.setProperty("--drift-y", `${(yPercent - 50) / 38}px`);
+    });
   };
 
   return (
     <main
+      ref={landingRef}
       className={isLeaving ? "landing-page leaving" : "landing-page"}
       onPointerMove={moveLight}
       onPointerLeave={(event) => {
-        event.currentTarget.style.setProperty("--water-x", "50%");
-        event.currentTarget.style.setProperty("--water-y", "48%");
+        window.cancelAnimationFrame(pointerFrameRef.current);
+        event.currentTarget.style.setProperty("--cursor-opacity", "0");
         event.currentTarget.style.setProperty("--drift-x", "0px");
         event.currentTarget.style.setProperty("--drift-y", "0px");
       }}

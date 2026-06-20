@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600&display=swap");
 
 :root {
   --text-title: #24145f;
@@ -16027,5 +16027,462 @@ svg {
   .section-card,
   .glass-card {
     padding: 18px;
+  }
+}
+
+/* Landing cover: translucent flowing water, quiet and artful. */
+.landing-page {
+  --water-x: 50%;
+  --water-y: 48%;
+  --drift-x: 0px;
+  --drift-y: 0px;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: clamp(18px, 3vw, 28px);
+  min-height: 100vh;
+  padding: clamp(24px, 4vw, 54px);
+  overflow: hidden;
+  isolation: isolate;
+  color: #16455d;
+  background:
+    radial-gradient(circle at var(--water-x) var(--water-y), rgba(255, 255, 255, 0.72), transparent 17%),
+    radial-gradient(circle at 22% 18%, rgba(186, 246, 255, 0.62), transparent 30%),
+    radial-gradient(circle at 78% 22%, rgba(255, 186, 218, 0.44), transparent 31%),
+    radial-gradient(circle at 54% 82%, rgba(221, 196, 255, 0.34), transparent 34%),
+    linear-gradient(145deg, #f8ffff 0%, #d9fbff 28%, #f7d7ec 62%, #d7f7ff 100%);
+  transition: filter 0.65s ease, opacity 0.65s ease, transform 0.65s ease;
+}
+
+.landing-page.leaving {
+  opacity: 0;
+  transform: scale(1.015);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.landing-page::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 26% 20%, rgba(255, 255, 255, 0.48), transparent 16%),
+    radial-gradient(ellipse at 62% 30%, rgba(255, 232, 170, 0.28), transparent 12%),
+    linear-gradient(115deg, transparent 0 10%, rgba(255, 255, 255, 0.42) 12%, transparent 16% 28%, rgba(54, 185, 207, 0.16) 31%, transparent 35%),
+    repeating-linear-gradient(172deg, rgba(3, 111, 143, 0.11) 0 2px, transparent 2px 34px),
+    repeating-linear-gradient(8deg, rgba(255, 119, 181, 0.1) 0 2px, transparent 2px 42px);
+  opacity: 0.72;
+  filter: blur(0.2px);
+  transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(1.02);
+  transition: transform 0.22s ease-out;
+}
+
+.landing-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 245, 180, 0.72) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle, rgba(135, 232, 255, 0.58) 0 1.5px, transparent 2.5px);
+  background-size: 210px 210px, 160px 160px, 260px 260px;
+  background-position: 46% 22%, 56% 50%, 34% 76%;
+  opacity: 0.58;
+  animation: waterSparkle 9s ease-in-out infinite alternate;
+}
+
+.landing-water-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.landing-water-bg i {
+  position: absolute;
+  width: clamp(180px, 24vw, 360px);
+  height: clamp(58px, 8vw, 112px);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 28% 42%, rgba(255, 255, 255, 0.72), transparent 28%),
+    linear-gradient(90deg, rgba(56, 205, 229, 0.16), rgba(255, 142, 193, 0.18), rgba(255, 233, 157, 0.12));
+  opacity: 0.68;
+  filter: blur(14px);
+  transform: rotate(-8deg);
+  animation: waterDrift 13s ease-in-out infinite alternate;
+}
+
+.landing-water-bg i:nth-child(1) {
+  left: 5%;
+  top: 16%;
+}
+
+.landing-water-bg i:nth-child(2) {
+  right: 9%;
+  top: 26%;
+  animation-delay: -4s;
+  transform: rotate(9deg);
+}
+
+.landing-water-bg i:nth-child(3) {
+  left: 19%;
+  bottom: 17%;
+  animation-delay: -7s;
+  transform: rotate(5deg);
+}
+
+.landing-water-bg i:nth-child(4) {
+  right: 18%;
+  bottom: 13%;
+  animation-delay: -9s;
+  transform: rotate(-11deg);
+}
+
+.landing-topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(1080px, 100%);
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.landing-topbar strong,
+.landing-topbar span,
+.landing-kicker,
+.landing-subtitle,
+.landing-water-notes,
+.landing-ending,
+.landing-water-portal {
+  font-family: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+}
+
+.landing-topbar strong {
+  color: rgba(20, 86, 111, 0.78);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+}
+
+.landing-topbar span {
+  color: rgba(59, 97, 125, 0.62);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.landing-dopamine-hero {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(1060px, 100%);
+  min-height: 0;
+  margin: 0 auto;
+  padding: clamp(54px, 10vh, 100px) 0 clamp(28px, 5vh, 56px);
+  place-items: center;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.landing-copy {
+  position: relative;
+  width: min(760px, 100%);
+  text-align: center;
+  transform: translate3d(calc(var(--drift-x) * -0.55), calc(var(--drift-y) * -0.35), 0);
+  transition: transform 0.22s ease-out;
+}
+
+.landing-kicker {
+  display: inline-flex;
+  margin-bottom: clamp(18px, 3vw, 28px);
+  padding: 8px 15px;
+  color: rgba(19, 98, 128, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: 0 12px 34px rgba(74, 175, 200, 0.11);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.landing-title,
+.landing-copy h1 {
+  margin: 0;
+  color: rgba(8, 77, 105, 0.88);
+  background: linear-gradient(135deg, #063d5a 0%, #119fc0 34%, #ff8fc7 72%, #fff1b7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  font-size: clamp(70px, 10.5vw, 150px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: 0.14em;
+  text-shadow: 0 18px 52px rgba(38, 158, 190, 0.16);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .landing-title,
+  .landing-copy h1 {
+    color: transparent;
+  }
+}
+
+.landing-water-portal {
+  position: relative;
+  display: inline-grid;
+  width: clamp(92px, 11vw, 132px);
+  height: clamp(92px, 11vw, 132px);
+  margin-top: clamp(28px, 5vw, 44px);
+  padding: 0;
+  place-items: center;
+  overflow: hidden;
+  color: #0c6684;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.84), transparent 24%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(172, 241, 255, 0.36), rgba(255, 193, 224, 0.3));
+  box-shadow:
+    inset 0 1px 18px rgba(255, 255, 255, 0.52),
+    0 24px 55px rgba(56, 178, 207, 0.2);
+  cursor: pointer;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.landing-water-portal::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(15, 132, 168, 0.16);
+  border-radius: inherit;
+}
+
+.landing-water-portal::after {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.72) 49%, transparent 60%);
+  transform: translateX(-38%) rotate(8deg);
+  transition: transform 0.55s ease;
+}
+
+.landing-water-portal span {
+  position: relative;
+  z-index: 1;
+  margin-top: -6px;
+  font-size: clamp(13px, 1.4vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.landing-water-portal i {
+  position: relative;
+  z-index: 1;
+  margin-top: -34px;
+  color: rgba(255, 139, 192, 0.9);
+  font-size: 18px;
+  font-style: normal;
+}
+
+.landing-water-portal:hover {
+  transform: translateY(-4px) scale(1.035);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1px 22px rgba(255, 255, 255, 0.62),
+    0 28px 68px rgba(255, 142, 193, 0.24),
+    0 0 48px rgba(105, 225, 246, 0.32);
+}
+
+.landing-water-portal:hover::after {
+  transform: translateX(38%) rotate(8deg);
+}
+
+.landing-subtitle {
+  margin: clamp(20px, 3vw, 30px) auto 0;
+  color: rgba(27, 91, 119, 0.7);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+}
+
+.landing-water-notes {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(760px, 100%);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.landing-water-notes span {
+  display: inline-flex;
+  padding: 8px 13px;
+  color: rgba(34, 92, 121, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 8px 24px rgba(53, 163, 191, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.landing-water-notes span:hover {
+  transform: translateY(-2px);
+  color: #0e7190;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.landing-ending {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: rgba(35, 84, 108, 0.54);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-align: center;
+}
+
+@keyframes waterSparkle {
+  0% {
+    opacity: 0.42;
+    transform: translate3d(-4px, 4px, 0);
+  }
+  100% {
+    opacity: 0.68;
+    transform: translate3d(6px, -8px, 0);
+  }
+}
+
+@keyframes waterDrift {
+  0% {
+    transform: translate3d(-14px, 8px, 0) rotate(-8deg) scale(0.98);
+  }
+  100% {
+    transform: translate3d(18px, -12px, 0) rotate(5deg) scale(1.04);
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page {
+    position: relative;
+    min-height: 100svh;
+    padding: max(18px, env(safe-area-inset-top)) 18px 24px;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    gap: 18px;
+    overflow-y: auto;
+  }
+
+  .landing-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .landing-topbar strong {
+    font-size: 13px;
+    letter-spacing: 0.24em;
+  }
+
+  .landing-topbar span {
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.18em;
+    white-space: normal;
+  }
+
+  .landing-dopamine-hero {
+    padding: 54px 0 26px;
+  }
+
+  .landing-kicker {
+    margin-bottom: 18px;
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: 0.16em;
+    white-space: normal;
+  }
+
+  .landing-title,
+  .landing-copy h1 {
+    font-size: clamp(52px, 17vw, 92px);
+    line-height: 1.04;
+    letter-spacing: 0.09em;
+  }
+
+  .landing-water-portal {
+    width: 96px;
+    height: 96px;
+    margin-top: 28px;
+  }
+
+  .landing-subtitle {
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 0.16em;
+  }
+
+  .landing-water-notes {
+    gap: 8px;
+  }
+
+  .landing-water-notes span {
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+
+  .landing-ending {
+    font-size: 10px;
+    line-height: 1.6;
+    letter-spacing: 0.16em;
+  }
+}
+
+@media (max-width: 430px) {
+  .landing-page {
+    padding-inline: 16px;
+  }
+
+  .landing-dopamine-hero {
+    padding-top: 48px;
+  }
+
+  .landing-title,
+  .landing-copy h1 {
+    font-size: clamp(48px, 18vw, 76px);
+    letter-spacing: 0.08em;
+  }
+
+  .landing-water-bg i {
+    opacity: 0.46;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page::after,
+  .landing-water-bg i {
+    animation: none !important;
   }
 }

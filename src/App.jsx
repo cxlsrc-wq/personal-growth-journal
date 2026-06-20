@@ -3733,46 +3733,55 @@ function LandingPage({ onEnter }) {
     window.setTimeout(onEnter, 650);
   };
 
+  const moveLight = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    event.currentTarget.style.setProperty("--water-x", `${x}%`);
+    event.currentTarget.style.setProperty("--water-y", `${y}%`);
+    event.currentTarget.style.setProperty("--drift-x", `${(x - 50) / 18}px`);
+    event.currentTarget.style.setProperty("--drift-y", `${(y - 50) / 22}px`);
+  };
+
   return (
-    <main className={isLeaving ? "landing-page leaving" : "landing-page"}>
-      <div className="landing-dopamine-bg" aria-hidden="true">
-        <i /><i /><i />
+    <main
+      className={isLeaving ? "landing-page leaving" : "landing-page"}
+      onPointerMove={moveLight}
+      onPointerLeave={(event) => {
+        event.currentTarget.style.setProperty("--water-x", "50%");
+        event.currentTarget.style.setProperty("--water-y", "48%");
+        event.currentTarget.style.setProperty("--drift-x", "0px");
+        event.currentTarget.style.setProperty("--drift-y", "0px");
+      }}
+    >
+      <div className="landing-water-bg" aria-hidden="true">
+        <i /><i /><i /><i />
       </div>
 
       <header className="landing-topbar">
         <strong>FUGUANG LOG</strong>
-        <span>彩色成长手账 · PERSONAL GROWTH SPACE</span>
+        <span>TIDAL MEMORY JOURNAL</span>
       </header>
 
       <section className="landing-dopamine-hero">
         <div className="landing-copy">
-          <span className="landing-kicker">DOPAMINE GROWTH LOG</span>
-          <h1>把成长记录成发光的日常</h1>
-          <p className="landing-subtitle">收藏情绪、愿望、远方和每天慢慢变好的自己。</p>
-          <div className="landing-actions">
-            <button className="landing-enter" type="button" onClick={enterSite}>进入我的航行系统</button>
-            <button className="landing-secondary" type="button" onClick={enterSite}>看看今天的我</button>
-          </div>
+          <span className="landing-kicker">A LIQUID PLACE FOR PRIVATE GROWTH</span>
+          <h1 className="landing-title">航海日志</h1>
+          <button className="landing-water-portal" type="button" onClick={enterSite} aria-label="进入航海日志">
+            <span>ENTER</span>
+            <i>✦</i>
+          </button>
+          <p className="landing-subtitle">MOOD · WISH · ATLAS · BOOK · FILM</p>
         </div>
       </section>
 
-      <section className="landing-preview-grid" aria-label="功能预览">
-        {[
-          ["01", "今日航行", "记录今天的行动和状态", "peach"],
-          ["02", "心绪仓库", "把复杂情绪温柔收好", "mint"],
-          ["03", "愿望星轨", "让愿望慢慢靠近现实", "purple"],
-          ["04", "世界图鉴", "收藏想去和去过的地方", "blue"],
-          ["05", "书影航志", "记录读过的书和看过的电影", "orange"],
-        ].map(([number, title, desc, tone]) => (
-          <article className={`landing-preview-card ${tone}`} key={title}>
-            <span>{number}</span>
-            <strong>{title}</strong>
-            <p>{desc}</p>
-          </article>
-        ))}
+      <section className="landing-water-notes" aria-label="Floating notes">
+        <span>SOFT CURRENT</span>
+        <span>GLOWING DAYS</span>
+        <span>INNER VOYAGE</span>
       </section>
 
-      <p className="landing-ending">愿今天也有一点点发亮的进度。</p>
+      <p className="landing-ending">LET THE LIGHT STAY ON THE WATER.</p>
     </main>
   );
 }

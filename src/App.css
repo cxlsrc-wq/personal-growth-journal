@@ -16686,12 +16686,16 @@ svg {
 
 .landing-dopamine-hero {
   overflow: visible;
+  width: 100%;
+  justify-items: center;
 }
 
 .landing-copy {
   width: min(92vw, 1200px);
   max-width: none;
   overflow: visible;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .landing-title,
@@ -16699,13 +16703,16 @@ svg {
   display: block;
   width: min(92vw, 1200px);
   max-width: none;
+  margin-inline: auto;
   overflow: visible;
   font-size: clamp(4rem, 10vw, 8rem);
+  font-style: italic;
   line-height: 0.95;
   letter-spacing: 0.045em;
   white-space: nowrap;
   text-align: center;
   text-wrap: nowrap;
+  transform: translateX(-0.02em);
 }
 
 .landing-water-portal:hover {

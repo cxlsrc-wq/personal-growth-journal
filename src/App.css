@@ -16756,3 +16756,49 @@ svg {
     display: none;
   }
 }
+/* Force center landing title */
+.landing-dopamine-hero {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  width: 100vw !important;
+  max-width: none !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 4vw !important;
+  align-items: center !important;
+  justify-content: center !important;
+  justify-items: center !important;
+  text-align: center !important;
+}
+
+.landing-copy {
+  width: min(92vw, 1200px) !important;
+  max-width: min(92vw, 1200px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  transform: none !important;
+}
+
+.landing-title,
+.landing-copy h1 {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+  font-style: italic !important;
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  .landing-dopamine-hero {
+    padding: 0 18px !important;
+  }
+
+  .landing-copy {
+    width: min(94vw, 720px) !important;
+    max-width: min(94vw, 720px) !important;
+  }
+}

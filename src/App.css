@@ -16486,3 +16486,166 @@ svg {
     animation: none !important;
   }
 }
+
+/* Landing polish: remove all line/grid textures, keep only soft pink-blue water glow. */
+.landing-page {
+  --water-x: 50%;
+  --water-y: 48%;
+  color: #164f68;
+  background:
+    radial-gradient(circle at var(--water-x) var(--water-y), rgba(255, 255, 255, 0.7), transparent 18%),
+    radial-gradient(circle at 18% 18%, rgba(177, 246, 255, 0.58), transparent 34%),
+    radial-gradient(circle at 78% 20%, rgba(255, 192, 222, 0.46), transparent 32%),
+    radial-gradient(circle at 30% 78%, rgba(183, 244, 224, 0.42), transparent 34%),
+    radial-gradient(circle at 78% 78%, rgba(218, 200, 255, 0.38), transparent 36%),
+    linear-gradient(145deg, #fbffff 0%, #dffaff 36%, #f9ddeb 70%, #effcff 100%);
+}
+
+.landing-page::before {
+  inset: -10%;
+  background:
+    radial-gradient(ellipse at 24% 24%, rgba(255, 255, 255, 0.58), transparent 24%),
+    radial-gradient(ellipse at 70% 28%, rgba(129, 229, 247, 0.22), transparent 30%),
+    radial-gradient(ellipse at 42% 70%, rgba(255, 183, 222, 0.24), transparent 31%),
+    radial-gradient(ellipse at 78% 74%, rgba(255, 244, 190, 0.22), transparent 28%);
+  opacity: 0.86;
+  filter: blur(18px);
+  transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(1.05);
+}
+
+.landing-page::after {
+  inset: 0;
+  background:
+    radial-gradient(circle at 48% 20%, rgba(255, 255, 255, 0.58) 0 2px, transparent 5px),
+    radial-gradient(circle at 56% 34%, rgba(255, 248, 196, 0.42) 0 2px, transparent 7px),
+    radial-gradient(circle at 42% 58%, rgba(255, 255, 255, 0.4) 0 3px, transparent 9px),
+    radial-gradient(circle at 64% 74%, rgba(172, 245, 255, 0.36) 0 3px, transparent 10px);
+  background-size: auto;
+  opacity: 0.48;
+  animation: waterGlowFloat 8s ease-in-out infinite alternate;
+}
+
+.landing-water-bg i {
+  width: clamp(220px, 34vw, 560px);
+  height: clamp(120px, 18vw, 260px);
+  background:
+    radial-gradient(ellipse at 34% 32%, rgba(255, 255, 255, 0.55), transparent 28%),
+    radial-gradient(ellipse at 70% 62%, rgba(115, 226, 245, 0.2), transparent 38%),
+    radial-gradient(ellipse at 42% 70%, rgba(255, 175, 217, 0.18), transparent 42%);
+  opacity: 0.58;
+  filter: blur(30px);
+  transform: none;
+  animation: softWaterDrift 15s ease-in-out infinite alternate;
+}
+
+.landing-water-bg i:nth-child(1) {
+  left: -8%;
+  top: 8%;
+}
+
+.landing-water-bg i:nth-child(2) {
+  right: -7%;
+  top: 18%;
+  animation-delay: -5s;
+}
+
+.landing-water-bg i:nth-child(3) {
+  left: 10%;
+  bottom: 4%;
+  animation-delay: -8s;
+}
+
+.landing-water-bg i:nth-child(4) {
+  right: 9%;
+  bottom: 2%;
+  animation-delay: -11s;
+}
+
+.landing-title,
+.landing-copy h1 {
+  max-width: 100%;
+  color: transparent;
+  background: linear-gradient(135deg, #064968 0%, #0da9c6 38%, #9d83d8 68%, #f08fc2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  font-size: clamp(96px, 12vw, 176px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  text-shadow: 0 24px 64px rgba(67, 171, 204, 0.18);
+  white-space: nowrap;
+}
+
+.landing-water-portal {
+  color: #0d6f8b;
+  border-color: rgba(255, 255, 255, 0.76);
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.86), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.54), rgba(187, 246, 255, 0.34), rgba(255, 206, 230, 0.28));
+  box-shadow:
+    inset 0 1px 24px rgba(255, 255, 255, 0.55),
+    0 22px 52px rgba(55, 178, 207, 0.18),
+    0 0 34px rgba(255, 162, 207, 0.18);
+}
+
+.landing-water-portal::after {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 48%);
+  transform: scale(0.72);
+  opacity: 0.36;
+}
+
+.landing-water-portal:hover::after {
+  transform: scale(1.05);
+}
+
+.landing-kicker,
+.landing-water-notes span {
+  color: rgba(14, 103, 130, 0.68);
+  border-color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 10px 28px rgba(74, 175, 200, 0.08);
+}
+
+.landing-subtitle,
+.landing-ending {
+  color: rgba(29, 87, 115, 0.58);
+}
+
+@keyframes waterGlowFloat {
+  0% {
+    opacity: 0.34;
+    transform: translate3d(-6px, 5px, 0) scale(0.98);
+  }
+  100% {
+    opacity: 0.52;
+    transform: translate3d(8px, -7px, 0) scale(1.03);
+  }
+}
+
+@keyframes softWaterDrift {
+  0% {
+    transform: translate3d(-18px, 8px, 0) scale(0.98);
+  }
+  100% {
+    transform: translate3d(20px, -12px, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-title,
+  .landing-copy h1 {
+    font-size: clamp(62px, 18vw, 112px);
+    line-height: 0.94;
+    letter-spacing: 0.01em;
+  }
+}
+
+@media (max-width: 430px) {
+  .landing-title,
+  .landing-copy h1 {
+    font-size: clamp(54px, 17vw, 76px);
+    white-space: nowrap;
+  }
+}

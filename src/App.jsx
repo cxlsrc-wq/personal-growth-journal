@@ -3766,8 +3766,8 @@ function LandingPage({ onEnter }) {
       <section className="landing-dopamine-hero">
         <div className="landing-copy">
           <span className="landing-kicker">A LIQUID PLACE FOR PRIVATE GROWTH</span>
-          <h1 className="landing-title">航海日志</h1>
-          <button className="landing-water-portal" type="button" onClick={enterSite} aria-label="进入航海日志">
+          <h1 className="landing-title">Voyage Log</h1>
+          <button className="landing-water-portal" type="button" onClick={enterSite} aria-label="Enter Voyage Log">
             <span>ENTER</span>
             <i>✦</i>
           </button>

@@ -4094,7 +4094,7 @@ function MainApp({ onReturnLanding }) {
             </button>
           ))}
         </nav>
-        <button className="return-landing" type="button" onClick={onReturnLanding}>← 返回入口页</button>
+        {onReturnLanding && <button className="return-landing" type="button" onClick={onReturnLanding}>← 返回入口页</button>}
       </aside>
 
       <main className={`main-content page-${activePage}`}>
@@ -4183,21 +4183,5 @@ function MainApp({ onReturnLanding }) {
 }
 
 export default function App() {
-  const [hasEntered, setHasEntered] = useState(() => readStoredValue(STORAGE_KEYS.entered) === "true");
-
-  const enterApp = () => {
-    writeStoredValue(STORAGE_KEYS.entered, "true");
-    setHasEntered(true);
-  };
-
-  const returnLanding = () => {
-    try {
-      localStorage.removeItem(STORAGE_KEYS.entered);
-    } catch {
-      // The in-memory state can still return to the landing page.
-    }
-    setHasEntered(false);
-  };
-
-  return hasEntered ? <MainApp onReturnLanding={returnLanding} /> : <LandingPage onEnter={enterApp} />;
+  return <MainApp />;
 }
